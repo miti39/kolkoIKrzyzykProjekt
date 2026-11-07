@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-4.0.0.min.js" integrity="sha256-OaVG6prZf4v69dPg6PhVattBXkcOWQB62pdZ3ORyrao=" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+
+    <script>
+        $(function(){
+            //Zwinięcie pierwszej planszy
+            $("#guzikRozpocznij").on("click", function(){
+                $(".contenerGuzikRozpocznij").remove();
+                $(".tloOtwierajaceGora").slideUp(1000, function(){
+                    $("#gorneTloStartowe").remove();
+                    $("#dolneTloStartowe").remove();
+                });
+                $(".tloOtwierajaceDol").animate({height: "0px"}, 1000);
+            })
+
+            //Zwinięcie drugiej planszy i rozpoczęcie gry z człowiekeim
+            $("#guzikCzlowiek").on("click", function(){
+                $("#wyborPrzeciwnikaH1").remove();
+                $("#guzikRobot").remove();
+                $("#guzikCzlowiek").remove();
+
+                $(".tloWyboruTrybuLewo").animate({width: "0px"}, 600);
+                $(".tloWyboruTrybuPrawo").animate({width: "0px"}, 600, function(){
+                    $(".tloWyboruTrybuLewo").remove();
+                    $(".tloWyboruTrybuPrawo").remove();
+                    graZCzlowiekiem();
+                });
+                
+            })
+            //Zwinięcie drugiej planszy i rozpoczęcie gry z robotem
+            $("#guzikCzlowiek").on("click", function(){
+                $("#wyborPrzeciwnikaH1").remove();
+                $("#guzikRobot").remove();
+                $("#guzikCzlowiek").remove();
+
+                $(".tloWyboruTrybuLewo").animate({width: "0px"}, 600);
+                $(".tloWyboruTrybuPrawo").animate({width: "0px"}, 600, function(){
+                    $(".tloWyboruTrybuLewo").remove();
+                    $(".tloWyboruTrybuPrawo").remove();
+                    graZRobotem();
+                });
+                
+            })
+
+        });
+
+        function graZCzlowiekiem(){
+            
+        }
+
+        function graZRobotem(){
+
+        }
+    </script>
+</head>
+<body>
+            <!-- STARTOWA PIERWSZA SCENA -->
+    <div class="tloOtwierajaceGora">
+        <h1 id="h1Tytulowe">KÓŁKO I KRZYŻYK</h1>
+    </div>
+    <div class="contenerGuzikRozpocznij">
+        <button class="guzikWybor" id="guzikRozpocznij">ZAGRAJ</button>
+    </div>
+    <div class="tloOtwierajaceDol"></div>
+
+
+            <!-- SCENA DRUGA WYBUR TRYBU -->
+    <div class="container tloWyboruTrybuLewo">
+        <h1 id="wyborPrzeciwnikaH1">Z KIM CHCESZ GRAĆ?</h1>
+        <button class="guzikWybor" id="guzikRobot">ROBOT</button>
+    </div>
+    <div class="tloWyboruTrybuPrawo">
+        <button class="guzikWybor" id="guzikCzlowiek">CZŁOWIEK</button>
+    </div>
+
+
+            <!-- ZAWARTOŚĆ GRY -->
+    <div class="container-fluid">
+        <h1>DZIAŁA</h1>
+            <!-- PLANSZA -->
+        <div class="container">
+
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+</body>
+</html>
