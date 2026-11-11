@@ -50,14 +50,202 @@
                 
             })
 
+            $("#nowaGra").on("click", function(){
+                for(let i = 0; i < 9; i++){
+                    plansza[i] = ""
+                }
+                $("#poleGora1").text("")
+                $("#poleGora2").text("")
+                $("#poleGora3").text("")
+
+                $("#poleSrodek1").text("")
+                $("#poleSrodek2").text("")
+                $("#poleSrodek3").text("")
+
+                $("#poleDol1").text("")
+                $("#poleDol2").text("")
+                $("#poleDol3").text("")
+            })
+
         });
 
+        let plansza = ["","","","","","","","",""]
+        let wTrakcieGry = true
+        let kolejGracza = "o"
+
+
         function graZCzlowiekiem(){
-            $("#info").text("Kiedyś zrobie by to działało")
+
+            $("#wyswietlaczKogoTura").text("")
+            $("#wyswietlaczKogoTura").append('<img src="'+ kolejGracza +'.png" width="200px" height="200px">')
+
+            $("#poleGora1").on("click", function(){
+                if(plansza[0] == ""){
+                    
+                    plansza[0] = kolejGracza
+                    $(this).append('<img src="'+ kolejGracza +'.png" width="200px" height="200px">')
+
+                    if(kolejGracza == "o"){
+                        kolejGracza = "x"
+                    }else{
+                        kolejGracza = "o"
+                    }
+                                        
+                    czyWygral()
+                    if(wTrakcieGry){
+                        graZCzlowiekiem()
+                    }
+
+                }
+            })
+            $("#poleGora2").on("click", function(){
+                if(plansza[1] == ""){
+                    plansza[1] = kolejGracza
+                    $(this).append('<img src="'+ kolejGracza +'.png" width="200px" height="200px">')
+                    
+                    if(kolejGracza == "o"){
+                        kolejGracza = "x"
+                    }else{
+                        kolejGracza = "o"
+                    }
+
+                    czyWygral()
+                    if(wTrakcieGry){
+                        graZCzlowiekiem()
+                    }
+                }
+            })
+            $("#poleGora3").on("click", function(){
+                if(plansza[2] == ""){
+                    plansza[2] = kolejGracza
+                    $(this).append('<img src="'+ kolejGracza +'.png" width="200px" height="200px">')
+                    
+                    if(kolejGracza == "o"){
+                        kolejGracza = "x"
+                    }else{
+                        kolejGracza = "o"
+                    }
+
+                    czyWygral()
+                    if(wTrakcieGry){
+                        graZCzlowiekiem()
+                    }
+                }
+            })
+            
+            $("#poleSrodek1").on("click", function(){
+                if(plansza[3] == ""){
+                    plansza[3] = kolejGracza
+                    $(this).append('<img src="'+ kolejGracza +'.png" width="200px" height="200px">')
+                    
+                    if(kolejGracza == "o"){
+                        kolejGracza = "x"
+                    }else{
+                        kolejGracza = "o"
+                    }
+
+                    czyWygral()
+                    if(wTrakcieGry){
+                        graZCzlowiekiem()
+                    }
+                }
+            })
+            $("#poleSrodek2").on("click", function(){
+                if(plansza[4] == ""){
+                    plansza[4] = kolejGracza
+                    $(this).append('<img src="'+ kolejGracza +'.png" width="200px" height="200px">')
+                    
+                    if(kolejGracza == "o"){
+                        kolejGracza = "x"
+                    }else{
+                        kolejGracza = "o"
+                    }
+
+                    czyWygral()
+                    if(wTrakcieGry){
+                        graZCzlowiekiem()
+                    }
+                }
+            })
+            $("#poleSrodek3").on("click", function(){
+                if(plansza[5] == ""){
+                    plansza[5] = kolejGracza
+                    $(this).append('<img src="'+ kolejGracza +'.png" width="200px" height="200px">')
+                    
+                    if(kolejGracza == "o"){
+                        kolejGracza = "x"
+                    }else{
+                        kolejGracza = "o"
+                    }
+
+                    czyWygral()
+                    if(wTrakcieGry){
+                        graZCzlowiekiem()
+                    }
+                }
+            })
+
+            $("#poleDol1").on("click", function(){
+                if(plansza[6] == ""){
+                    plansza[6] = kolejGracza
+                    $(this).append('<img src="'+ kolejGracza +'.png" width="200px" height="200px">')
+                    
+                    if(kolejGracza == "o"){
+                        kolejGracza = "x"
+                    }else{
+                        kolejGracza = "o"
+                    }
+
+                    czyWygral()
+                    if(wTrakcieGry){
+                        graZCzlowiekiem()
+                    }
+                }
+            })
+            $("#poleDol2").on("click", function(){
+                if(plansza[7] == ""){
+                    plansza[7] = kolejGracza
+                    $(this).append('<img src="'+ kolejGracza +'.png" width="200px" height="200px">')
+                    
+                    if(kolejGracza == "o"){
+                        kolejGracza = "x"
+                    }else{
+                        kolejGracza = "o"
+                    }
+
+                    czyWygral()
+                    if(wTrakcieGry){
+                        graZCzlowiekiem()
+                    }
+                }
+            })
+            $("#poleDol3").on("click", function(){
+                if(plansza[8] == ""){
+                    plansza[8] = kolejGracza
+                    $(this).append('<img src="'+ kolejGracza +'.png" width="200px" height="200px">')
+                    
+                    if(kolejGracza == "o"){
+                        kolejGracza = "x"
+                    }else{
+                        kolejGracza = "o"
+                    }
+
+                    czyWygral()
+                    if(wTrakcieGry){
+                        graZCzlowiekiem()
+                    }
+                }
+            })
+
         }
+
 
         function graZRobotem(){
             $("#info").text("Kiedyś zrobie by to działało")
+        }
+
+        function czyWygral(){
+            
         }
     </script>
 </head>
@@ -73,7 +261,7 @@
 
 
             <!-- SCENA DRUGA WYBUR TRYBU -->
-    <div class="container tloWyboruTrybuLewo">
+    <div class="tloWyboruTrybuLewo">
         <h1 id="wyborPrzeciwnikaH1">Z KIM CHCESZ GRAĆ?</h1>
         <button class="guzikWybor" id="guzikRobot">ROBOT</button>
     </div>
@@ -94,30 +282,30 @@
                 <div class="ktoIdzieKontener">
                     <h2>TERAZ KOLEJ:</h2>
                     <br>
-                    <img src="o.png" width="200px" height="200px">
+                    <p id="wyswietlaczKogoTura"></p>
                 </div>
             </div>
             <div class="col-lg-4">
                             <!-- PLANSZA -->
                 <div class="container plansza">
                     <div class="row">
-                        <div class="col-lg-4 planszaBorderPD"><img src="o.png" width="200px" height="200px"></div>
-                        <div class="col-lg-4 planszaBorderPD"><img src="x.png" width="200px" height="200px"></div>
-                        <div class="col-lg-4 pole"></div>
+                        <div class="col-lg-4 planszaBorderPD" id="poleGora1"></div>
+                        <div class="col-lg-4 planszaBorderPD" id="poleGora2"></div>
+                        <div class="col-lg-4 pole" id="poleGora3"></div>
                     </div>
                     <div class="row">
-                        <div class="col-lg-4 planszaBorderPD"></div>
-                        <div class="col-lg-4 planszaBorderPD"></div>
-                        <div class="col-lg-4 planszaBorderLG"></div>
+                        <div class="col-lg-4 planszaBorderPD" id="poleSrodek1"></div>
+                        <div class="col-lg-4 planszaBorderPD" id="poleSrodek2"></div>
+                        <div class="col-lg-4 planszaBorderLG" id="poleSrodek3"></div>
                     </div>
                     <div class="row">
-                        <div class="col-lg-4 pole"></div>
-                        <div class="col-lg-4 planszaBorderLG poleSD"></div>
-                        <div class="col-lg-4 planszaBorderLG"></div>
+                        <div class="col-lg-4 pole" id="poleDol1"></div>
+                        <div class="col-lg-4 planszaBorderLG poleSD" id="poleDol2"></div>
+                        <div class="col-lg-4 planszaBorderLG" id="poleDol3"></div>
                     </div>
                 </div>
 
-                <button class="guzikRezetWyniku"><h2>NASTEMPNA RUNDA!</h2></button>
+                <button class="guzikRezet" id="nowaGra"><h2>NASTĘPNA RUNDA!</h2></button>
             </div>
             <div class="col-lg-4">
                     <!-- TABLICA WYNIKÓW -->
@@ -127,7 +315,7 @@
                         <br>
                     <h3 class="wyniki">Pan Dettlaff: <span id="wynikGraczKolko">0</span></h3>
                 </div>
-                <button class="guzikRezetWyniku">ZRESETUJ WYNIK</button>
+                <button class="guzikRezet" id="czyszczenieTabeli">ZRESETUJ WYNIK</button>
             </div>
         </div>
         
