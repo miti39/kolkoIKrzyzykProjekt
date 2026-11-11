@@ -15,8 +15,8 @@
             $("#guzikRozpocznij").on("click", function(){
                 $(".contenerGuzikRozpocznij").remove();
                 $(".tloOtwierajaceGora").slideUp(1000, function(){
-                    $("#gorneTloStartowe").remove();
-                    $("#dolneTloStartowe").remove();
+                    $(".tloOtwierajaceGora").remove();
+                    $(".tloOtwierajaceDol").remove();
                 });
                 $(".tloOtwierajaceDol").animate({height: "0px"}, 1000);
             })
@@ -36,7 +36,7 @@
                 
             })
             //Zwinięcie drugiej planszy i rozpoczęcie gry z robotem
-            $("#guzikCzlowiek").on("click", function(){
+            $("#guzikRobot").on("click", function(){
                 $("#wyborPrzeciwnikaH1").remove();
                 $("#guzikRobot").remove();
                 $("#guzikCzlowiek").remove();
@@ -53,11 +53,11 @@
         });
 
         function graZCzlowiekiem(){
-            
+            $("#info").text("Kiedyś zrobie by to działało")
         }
 
         function graZRobotem(){
-
+            $("#info").text("Kiedyś zrobie by to działało")
         }
     </script>
 </head>
@@ -84,11 +84,38 @@
 
             <!-- ZAWARTOŚĆ GRY -->
     <div class="container-fluid">
-        <h1>DZIAŁA</h1>
-            <!-- PLANSZA -->
-        <div class="container">
+        <p id="info"></p>
+        
+        <h1 class="naglowek">KÓŁKO I KRZYŻYK</h1>
+        
+        <div class="row">
+            <div class="col-lg-4">
+                <!-- TU BĘDZIE POKAZANE KTO IDZE -->
+            </div>
+            <div class="col-lg-4">
+                            <!-- PLANSZA -->
+                <div class="container plansza">
 
+                    <div class="row">
+                        <div class="col-lg-4 planszaBorderPD"><img src="kolko.png" width="200px" height="200px"></div>
+                        <div class="col-lg-4 planszaBorderPD"><img src="krzyzyk.png" width="200px" height="200px"></div>
+                        <div class="col-lg-4 pole"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4 planszaBorderPD"></div>
+                        <div class="col-lg-4 planszaBorderPD"></div>
+                        <div class="col-lg-4 planszaBorderLG"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4 pole"></div>
+                        <div class="col-lg-4 planszaBorderLG poleSD"></div>
+                        <div class="col-lg-4 planszaBorderLG"></div>
+                    </div>
+
+                </div>
+            </div>
         </div>
+        
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 </body>
