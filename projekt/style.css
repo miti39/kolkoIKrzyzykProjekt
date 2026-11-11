@@ -165,3 +165,49 @@ body{
     margin-bottom: 30px;
     width: 19.5%;
 }
+
+    /* boczne rzeczy */
+
+.ktoIdzieKontener{
+    height: 60%;
+    width: 40%;
+    padding-top: 10%;
+    margin: auto;
+    color: #EAF4F4;
+    text-align: center;
+    background-color: #1F4068;
+    border: #14213D solid 5px;
+    border-radius: 30px;
+}
+
+.wynikiKontener{
+    height: 50%;
+    width: 65%;
+    padding-top: 5%;
+    margin: auto;
+    color: #EAF4F4;
+    text-align: center;
+    background-color: #1F4068;
+    border: #14213D solid 5px;
+    border-radius: 30px;
+}
+
+.guzikRezetWyniku{
+    display: block;
+    background-color: #1F4068;
+    border: 3px solid #14213D;
+    color: #EAF4F4;
+    padding: 9px;
+    margin-top: 5%;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 12px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+.guzikRezetWyniku:hover {
+    background-color: #278EA5;
+    transform: scale(1.05);
+}
