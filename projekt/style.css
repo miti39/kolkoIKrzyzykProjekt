@@ -27,12 +27,13 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
+    
 }
 
 #guzikRozpocznij {
     z-index: 4;
     position: absolute;
+    margin-top: 100vh;
 }
 
 #h1Tytulowe {
@@ -56,7 +57,7 @@ body{
     top: 0;
     width: 50%;
     height: 100%;
-    background: linear-gradient(135deg, #14213D, #1F4068);
+    background: linear-gradient(90deg, #14213D, #1F4068);
     color: #EAF4F4;
 }
 
@@ -67,7 +68,7 @@ body{
     top: 0;
     width: 50%;
     height: 100%;
-    background: linear-gradient(135deg, #278EA5, #21BF9B);
+    background: linear-gradient(90deg, #1F4068, #278EA5);
     color: #EAF4F4;
 }
 
@@ -115,4 +116,105 @@ body{
     background: #EAF4F4;
     color: #14213D;
     transform: scale(1.1);
+}
+
+    /* Budowa Planszy */
+    /* p-Prawy Border D-Dolny border L-lewy border G-górny border */
+
+.plansza{
+    width: 600px;
+    height: 600px;
+}
+
+.planszaBorderPD{
+    padding: 0px;
+    border-right: 5px solid #14213D;
+    border-bottom: 5px solid #14213D;
+    width: 200px;
+    height: 200px;
+    
+}
+.planszaBorderD{
+    padding: 0px;
+    border-bottom: 5px solid #14213D;
+    width: 200px;
+    height: 200px;
+}
+.planszaBorderP{
+    padding: 0px;
+    border-right: 5px solid #14213D;
+    width: 200px;
+    height: 200px;
+}
+.pole{
+    padding: 0px;
+    width: 200px;
+    height: 200px;
+}
+.poleSD{
+    padding-left: 0px;
+    margin-right: 5px;
+
+}
+.wygranePole{
+    background-color: #278EA5;
+}
+
+    /* NAGŁÓWEK */
+
+.naglowek{
+    text-align: center;
+    padding: 12px;
+    border: #278EA5 solid 5px;
+    border-radius: 50px 20px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 30px;
+    width: 19.5%;
+}
+
+    /* boczne rzeczy */
+
+.ktoIdzieKontener{
+    height: 60%;
+    width: 40%;
+    padding-top: 10%;
+    margin: auto;
+    color: #EAF4F4;
+    text-align: center;
+    background-color: #1F4068;
+    border: #14213D solid 5px;
+    border-radius: 30px;
+}
+
+.wynikiKontener{
+    height: 50%;
+    width: 65%;
+    padding-top: 5%;
+    margin: auto;
+    color: #EAF4F4;
+    text-align: center;
+    background-color: #1F4068;
+    border: #14213D solid 5px;
+    border-radius: 30px;
+}
+
+.guzikRezet{
+    display: block;
+    background-color: #1F4068;
+    border: 3px solid #14213D;
+    color: #EAF4F4;
+    padding: 9px;
+    margin-top: 5%;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 12px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+.guzikRezetWyniku:hover {
+    background-color: #278EA5;
+    transform: scale(1.05);
 }
