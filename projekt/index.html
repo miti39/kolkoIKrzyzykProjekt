@@ -31,6 +31,16 @@
                 $(".tloWyboruTrybuPrawo").animate({width: "0px"}, 600, function(){
                     $(".tloWyboruTrybuLewo").remove();
                     $(".tloWyboruTrybuPrawo").remove();
+                    let imieO = prompt("Podaj imie gracza O").trim()
+                    while(imieO == ""){
+                        imieO = prompt("Podaj POPRAWNIE imie gracza O").trim()
+                    }
+                    $("#imieGraczO").text(imieO)
+                    let imieX = prompt("Podaj imie gracza X")
+                    while(imieX == ""){
+                        imieX = prompt("Podaj POPRAWNIE imie gracza X").trim()
+                    }
+                    $("#imieGraczX").text(imieX)
                     graZCzlowiekiem();
                 });
                 
@@ -45,9 +55,22 @@
                 $(".tloWyboruTrybuPrawo").animate({width: "0px"}, 600, function(){
                     $(".tloWyboruTrybuLewo").remove();
                     $(".tloWyboruTrybuPrawo").remove();
+                    let imieO = prompt("Podaj imie gracza O").trim()
+                    while(imieO == ""){
+                        imieO = prompt("Podaj POPRAWNIE imie gracza O").trim()
+                    }
+                    $("#imieGraczX").text("ROBOCIK")
                     graZRobotem();
                 });
                 
+            })
+
+            $("#czyszczenieTabeli").on("click", function(){
+                wygraneO = 0;
+                wygraneX = 0;
+
+                $("#wynikGraczKolko").text(wygraneO)
+                $("#wynikGraczKrzyzyk").text(wygraneX)
             })
 
             $("#nowaGra").on("click", function(){
@@ -76,6 +99,11 @@
         let plansza = ["1","2","3","4","5","6","7","8","9"]
         let kolejGracza = "o"
 
+        let wygraneO = 0
+        let wygraneX = 0
+
+        
+        
 
         function graZCzlowiekiem(){
 
@@ -244,6 +272,14 @@
                 for(let i = 0; i < 9; i++){
                     plansza[i] = "#"
                 }
+                if(kolejGracza == "o"){
+                    wygraneO += 1;
+                    $("#wynikGraczKolko").text(wygraneO)
+                }else{
+                    wygraneX += 1;
+                    $("#wynikGraczKrzyzyk").text(wygraneX)
+                }
+
                 return;
             }
             if(plansza[3] == plansza[4] && plansza[4] == plansza[5]){
@@ -255,6 +291,13 @@
                 for(let i = 0; i < 9; i++){
                     plansza[i] = "#"
                 }
+                if(kolejGracza == "o"){
+                    wygraneO += 1;
+                    $("#wynikGraczKolko").text(wygraneO)
+                }else{
+                    wygraneX += 1;
+                    $("#wynikGraczKrzyzyk").text(wygraneX)
+                }
                 return;
             }
             if(plansza[6] == plansza[7] && plansza[7] == plansza[8]){
@@ -265,6 +308,107 @@
                 
                 for(let i = 0; i < 9; i++){
                     plansza[i] = "#"
+                }
+                if(kolejGracza == "o"){
+                    wygraneO += 1;
+                    $("#wynikGraczKolko").text(wygraneO)
+                }else{
+                    wygraneX += 1;
+                    $("#wynikGraczKrzyzyk").text(wygraneX)
+                }
+                return;
+            }
+
+            // Wygrana na ukos
+            if(plansza[0] == plansza[4] && plansza[4] == plansza[8]){
+                
+                $("#poleGora1").addClass("wygranePole")
+                $("#poleSrodek2").addClass("wygranePole")
+                $("#poleDol3").addClass("wygranePole")
+                
+                for(let i = 0; i < 9; i++){
+                    plansza[i] = "#"
+                }
+                if(kolejGracza == "o"){
+                    wygraneO += 1;
+                    $("#wynikGraczKolko").text(wygraneO)
+                }else{
+                    wygraneX += 1;
+                    $("#wynikGraczKrzyzyk").text(wygraneX)
+                }
+                return;
+            }
+            if(plansza[2] == plansza[4] && plansza[4] == plansza[6]){
+                
+                $("#poleGora3").addClass("wygranePole")
+                $("#poleSrodek2").addClass("wygranePole")
+                $("#poleDol1").addClass("wygranePole")
+                
+                for(let i = 0; i < 9; i++){
+                    plansza[i] = "#"
+                }
+                if(kolejGracza == "o"){
+                    wygraneO += 1;
+                    $("#wynikGraczKolko").text(wygraneO)
+                }else{
+                    wygraneX += 1;
+                    $("#wynikGraczKrzyzyk").text(wygraneX)
+                }
+                return;
+            }
+
+            //Wygrana w kolumnie
+            if(plansza[0] == plansza[3] && plansza[3] == plansza[6]){
+                
+                $("#poleGora1").addClass("wygranePole")
+                $("#poleSrodek1").addClass("wygranePole")
+                $("#poleDol1").addClass("wygranePole")
+                
+                for(let i = 0; i < 9; i++){
+                    plansza[i] = "#"
+                }
+                if(kolejGracza == "o"){
+                    wygraneO += 1;
+                    $("#wynikGraczKolko").text(wygraneO)
+                }else{
+                    wygraneX += 1;
+                    $("#wynikGraczKrzyzyk").text(wygraneX)
+                }
+                return;
+            }
+            if(plansza[1] == plansza[4] && plansza[4] == plansza[7]){
+                
+                $("#poleGora2").addClass("wygranePole")
+                $("#poleSrodek2").addClass("wygranePole")
+                $("#poleDol2").addClass("wygranePole")
+                
+                for(let i = 0; i < 9; i++){
+                    plansza[i] = "#"
+                }
+                if(kolejGracza == "o"){
+                    wygraneO += 1;
+                    $("#wynikGraczKolko").text(wygraneO)
+                }else{
+                    wygraneX += 1;
+                    $("#wynikGraczKrzyzyk").text(wygraneX)
+                }
+                return;
+            }
+            if(plansza[2] == plansza[5] && plansza[5] == plansza[8]){
+                
+                $("#poleGora3").addClass("wygranePole")
+                $("#poleSrodek3").addClass("wygranePole")
+                $("#poleDol3").addClass("wygranePole")
+                
+                for(let i = 0; i < 9; i++){
+                    plansza[i] = "#"
+                }
+                if(kolejGracza == "o"){
+                    wygraneO += 1;
+                    $("#wynikGraczKolko").text(wygraneO)
+                }else{
+                    wygraneX += 1;
+                    $("#wynikGraczKrzyzyk").text(wygraneX)
                 }
                 return;
             }
@@ -333,9 +477,9 @@
                     <!-- TABLICA WYNIKÓW -->
                 <div class="wynikiKontener">
                     <h2>TABLICA WYNIKÓW</h2> <br>
-                    <h3 class="wyniki">Mateusz: <span id="wynikGraczKolko">0</span></h3>
+                    <h3 class="wyniki"><span id="imieGraczO"></span>: <span id="wynikGraczKolko">0</span></h3>
                         <br>
-                    <h3 class="wyniki">Pan Dettlaff: <span id="wynikGraczKolko">0</span></h3>
+                    <h3 class="wyniki"><span id="imieGraczX"></span>: <span id="wynikGraczKrzyzyk">0</span></h3>
                 </div>
                 <button class="guzikRezet" id="czyszczenieTabeli">ZRESETUJ WYNIK</button>
             </div>
