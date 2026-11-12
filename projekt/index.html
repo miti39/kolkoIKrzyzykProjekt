@@ -77,17 +77,17 @@
                 for(let i = 0; i < 9; i++){
                     plansza[i] = i + 1
                 }
-                $("#poleGora1").text("").removeClass("wygranePole")
-                $("#poleGora2").text("").removeClass("wygranePole")
-                $("#poleGora3").text("").removeClass("wygranePole")
+                $("#pole0").text("").removeClass("wygranePole")
+                $("#pole1").text("").removeClass("wygranePole")
+                $("#pole2").text("").removeClass("wygranePole")
 
-                $("#poleSrodek1").text("").removeClass("wygranePole")
-                $("#poleSrodek2").text("").removeClass("wygranePole")
-                $("#poleSrodek3").text("").removeClass("wygranePole")
+                $("#pole3").text("").removeClass("wygranePole")
+                $("#pole4").text("").removeClass("wygranePole")
+                $("#pole5").text("").removeClass("wygranePole")
 
-                $("#poleDol1").text("").removeClass("wygranePole")
-                $("#poleDol2").text("").removeClass("wygranePole")
-                $("#poleDol3").text("").removeClass("wygranePole")
+                $("#pole6").text("").removeClass("wygranePole")
+                $("#pole7").text("").removeClass("wygranePole")
+                $("#pole8").text("").removeClass("wygranePole")
 
                 $("#wyswietlaczKogoTura").text("")
                 $("#wyswietlaczKogoTura").append('<img src="'+ kolejGracza +'.png" width="200px" height="200px">')
@@ -110,10 +110,11 @@
             $("#wyswietlaczKogoTura").text("")
             $("#wyswietlaczKogoTura").append('<img src="'+ kolejGracza +'.png" width="200px" height="200px">')
 
-            $("#poleGora1").on("click", function(){
-                if(plansza[0] == "1"){
-                    
-                    plansza[0] = kolejGracza
+            for(let i = 0; i < 9; i++){
+                $("#pole" + i).on("click", function(){
+                if(plansza[i] == i + 1){
+                    console.log(plansza[i])
+                    plansza[i] = kolejGracza
                     $(this).append('<img src="'+ kolejGracza +'.png" width="200px" height="200px">')
               
                     czyWygral()
@@ -125,135 +126,9 @@
                     }
                     graZCzlowiekiem()
                 }
-            })
-            $("#poleGora2").on("click", function(){
-                if(plansza[1] == "2"){
-                    plansza[1] = kolejGracza
-                    $(this).append('<img src="'+ kolejGracza +'.png" width="200px" height="200px">')
-                    
-                    czyWygral()
-
-                    if(kolejGracza == "o"){
-                        kolejGracza = "x"
-                    }else{
-                        kolejGracza = "o"
-                    }
-                    graZCzlowiekiem()
-                }
-            })
-            $("#poleGora3").on("click", function(){
-                if(plansza[2] == "3"){
-                    plansza[2] = kolejGracza
-                    $(this).append('<img src="'+ kolejGracza +'.png" width="200px" height="200px">')
-                    
-
-                    czyWygral()
-
-                    if(kolejGracza == "o"){
-                        kolejGracza = "x"
-                    }else{
-                        kolejGracza = "o"
-                    }
-                    graZCzlowiekiem()
-                }
-            })
-            
-            $("#poleSrodek1").on("click", function(){
-                if(plansza[3] == "4"){
-                    plansza[3] = kolejGracza
-                    $(this).append('<img src="'+ kolejGracza +'.png" width="200px" height="200px">')
-                    
-
-                    czyWygral()
-
-                    if(kolejGracza == "o"){
-                        kolejGracza = "x"
-                    }else{
-                        kolejGracza = "o"
-                    }
-                    graZCzlowiekiem()
-                }
-            })
-            $("#poleSrodek2").on("click", function(){
-                if(plansza[4] == "5"){
-                    plansza[4] = kolejGracza
-                    $(this).append('<img src="'+ kolejGracza +'.png" width="200px" height="200px">')
-                    
-
-                    czyWygral()
-
-                    if(kolejGracza == "o"){
-                        kolejGracza = "x"
-                    }else{
-                        kolejGracza = "o"
-                    }
-                    graZCzlowiekiem()
-                }
-            })
-            $("#poleSrodek3").on("click", function(){
-                if(plansza[5] == "6"){
-                    plansza[5] = kolejGracza
-                    $(this).append('<img src="'+ kolejGracza +'.png" width="200px" height="200px">')
-                    
-
-                    czyWygral()
-
-                    if(kolejGracza == "o"){
-                        kolejGracza = "x"
-                    }else{
-                        kolejGracza = "o"
-                    }
-                    graZCzlowiekiem()
-                }
-            })
-
-            $("#poleDol1").on("click", function(){
-                if(plansza[6] == "7"){
-                    plansza[6] = kolejGracza
-                    $(this).append('<img src="'+ kolejGracza +'.png" width="200px" height="200px">')
-                    
-
-                    czyWygral()
-
-                    if(kolejGracza == "o"){
-                        kolejGracza = "x"
-                    }else{
-                        kolejGracza = "o"
-                    }
-                    graZCzlowiekiem()
-                }
-            })
-            $("#poleDol2").on("click", function(){
-                if(plansza[7] == "8"){
-                    plansza[7] = kolejGracza
-                    $(this).append('<img src="'+ kolejGracza +'.png" width="200px" height="200px">')
-                
-                    czyWygral()
-
-                    if(kolejGracza == "o"){
-                        kolejGracza = "x"
-                    }else{
-                        kolejGracza = "o"
-                    }
-                    graZCzlowiekiem()
-                }
-            })
-            $("#poleDol3").on("click", function(){
-                if(plansza[8] == "9"){
-                    plansza[8] = kolejGracza
-                    $(this).append('<img src="'+ kolejGracza +'.png" width="200px" height="200px">')
-                    
-                    czyWygral()
-
-                    if(kolejGracza == "o"){
-                        kolejGracza = "x"
-                    }else{
-                        kolejGracza = "o"
-                    }
-                    graZCzlowiekiem()
-                }
-            })
-
+                })
+            }
+           
         }
 
 
@@ -265,9 +140,9 @@
             // Wygrana w wierszach
             if(plansza[0] == plansza[1] && plansza[1] == plansza[2]){
                 
-                $("#poleGora1").addClass("wygranePole")
-                $("#poleGora2").addClass("wygranePole")
-                $("#poleGora3").addClass("wygranePole")
+                $("#pole0").addClass("wygranePole")
+                $("#pole1").addClass("wygranePole")
+                $("#pole2").addClass("wygranePole")
                 
                 for(let i = 0; i < 9; i++){
                     plansza[i] = "#"
@@ -284,9 +159,9 @@
             }
             if(plansza[3] == plansza[4] && plansza[4] == plansza[5]){
                 
-                $("#poleSrodek1").addClass("wygranePole")
-                $("#poleSrodek2").addClass("wygranePole")
-                $("#poleSrodek3").addClass("wygranePole")
+                $("#pole3").addClass("wygranePole")
+                $("#pole4").addClass("wygranePole")
+                $("#pole5").addClass("wygranePole")
                 
                 for(let i = 0; i < 9; i++){
                     plansza[i] = "#"
@@ -302,9 +177,9 @@
             }
             if(plansza[6] == plansza[7] && plansza[7] == plansza[8]){
                 
-                $("#poleDol1").addClass("wygranePole")
-                $("#poleDol2").addClass("wygranePole")
-                $("#poleDol3").addClass("wygranePole")
+                $("#pole6").addClass("wygranePole")
+                $("#pole7").addClass("wygranePole")
+                $("#pole8").addClass("wygranePole")
                 
                 for(let i = 0; i < 9; i++){
                     plansza[i] = "#"
@@ -322,9 +197,9 @@
             // Wygrana na ukos
             if(plansza[0] == plansza[4] && plansza[4] == plansza[8]){
                 
-                $("#poleGora1").addClass("wygranePole")
-                $("#poleSrodek2").addClass("wygranePole")
-                $("#poleDol3").addClass("wygranePole")
+                $("#pole0").addClass("wygranePole")
+                $("#pole4").addClass("wygranePole")
+                $("#pole8").addClass("wygranePole")
                 
                 for(let i = 0; i < 9; i++){
                     plansza[i] = "#"
@@ -340,9 +215,9 @@
             }
             if(plansza[2] == plansza[4] && plansza[4] == plansza[6]){
                 
-                $("#poleGora3").addClass("wygranePole")
-                $("#poleSrodek2").addClass("wygranePole")
-                $("#poleDol1").addClass("wygranePole")
+                $("#pole2").addClass("wygranePole")
+                $("#pole4").addClass("wygranePole")
+                $("#pole6").addClass("wygranePole")
                 
                 for(let i = 0; i < 9; i++){
                     plansza[i] = "#"
@@ -360,9 +235,9 @@
             //Wygrana w kolumnie
             if(plansza[0] == plansza[3] && plansza[3] == plansza[6]){
                 
-                $("#poleGora1").addClass("wygranePole")
-                $("#poleSrodek1").addClass("wygranePole")
-                $("#poleDol1").addClass("wygranePole")
+                $("#pole0").addClass("wygranePole")
+                $("#pole3").addClass("wygranePole")
+                $("#pole6").addClass("wygranePole")
                 
                 for(let i = 0; i < 9; i++){
                     plansza[i] = "#"
@@ -378,9 +253,9 @@
             }
             if(plansza[1] == plansza[4] && plansza[4] == plansza[7]){
                 
-                $("#poleGora2").addClass("wygranePole")
-                $("#poleSrodek2").addClass("wygranePole")
-                $("#poleDol2").addClass("wygranePole")
+                $("#pole1").addClass("wygranePole")
+                $("#pole4").addClass("wygranePole")
+                $("#pole7").addClass("wygranePole")
                 
                 for(let i = 0; i < 9; i++){
                     plansza[i] = "#"
@@ -396,9 +271,9 @@
             }
             if(plansza[2] == plansza[5] && plansza[5] == plansza[8]){
                 
-                $("#poleGora3").addClass("wygranePole")
-                $("#poleSrodek3").addClass("wygranePole")
-                $("#poleDol3").addClass("wygranePole")
+                $("#pole2").addClass("wygranePole")
+                $("#pole5").addClass("wygranePole")
+                $("#pole8").addClass("wygranePole")
                 
                 for(let i = 0; i < 9; i++){
                     plansza[i] = "#"
@@ -455,19 +330,19 @@
                             <!-- PLANSZA -->
                 <div class="container plansza">
                     <div class="row">
-                        <div class="col-lg-4 planszaBorderPD" id="poleGora1"></div>
-                        <div class="col-lg-4 planszaBorderPD" id="poleGora2"></div>
-                        <div class="col-lg-4 planszaBorderD" id="poleGora3"></div>
+                        <div class="col-lg-4 planszaBorderPD" id="pole0"></div>
+                        <div class="col-lg-4 planszaBorderPD" id="pole1"></div>
+                        <div class="col-lg-4 planszaBorderD" id="pole2"></div>
                     </div>
                     <div class="row">
-                        <div class="col-lg-4 planszaBorderPD" id="poleSrodek1"></div>
-                        <div class="col-lg-4 planszaBorderPD" id="poleSrodek2"></div>
-                        <div class="col-lg-4 planszaBorderD" id="poleSrodek3"></div>
+                        <div class="col-lg-4 planszaBorderPD" id="pole3"></div>
+                        <div class="col-lg-4 planszaBorderPD" id="pole4"></div>
+                        <div class="col-lg-4 planszaBorderD" id="pole5"></div>
                     </div>
                     <div class="row">
-                        <div class="col-lg-4 planszaBorderP" id="poleDol1"></div>
-                        <div class="col-lg-4 planszaBorderP" id="poleDol2"></div>
-                        <div class="col-lg-4 pole" id="poleDol3"></div>
+                        <div class="col-lg-4 planszaBorderP" id="pole6"></div>
+                        <div class="col-lg-4 planszaBorderP" id="pole7"></div>
+                        <div class="col-lg-4 pole" id="pole8"></div>
                     </div>
                 </div>
 
