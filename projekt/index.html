@@ -59,6 +59,7 @@
                     while(imieO == ""){
                         imieO = prompt("Podaj POPRAWNIE imie gracza O").trim()
                     }
+                    $("#imieGraczO").text(imieO)
                     $("#imieGraczX").text("ROBOCIK")
                     graZRobotem();
                 });
@@ -89,8 +90,20 @@
                 $("#pole7").text("").removeClass("wygranePole")
                 $("#pole8").text("").removeClass("wygranePole")
 
+                if(rozpoczynaGracz == "o"){
+                    kolejGracza = "x"
+                    rozpoczynaGracz = "x"
+                }else{
+                    kolejGracza = "o"
+                    rozpoczynaGracz = "o"
+                }
                 $("#wyswietlaczKogoTura").text("")
                 $("#wyswietlaczKogoTura").append('<img src="'+ kolejGracza +'.png" width="200px" height="200px">')
+                
+
+                if(przeciwnik == "robot" && kolejGracza == "x"){
+                    setTimeout(trybDefensywny, 700);
+                }
             })
 
         });
@@ -98,44 +111,298 @@
         //robie tak bo inaczej "o" odrazu wygrywa
         let plansza = ["1","2","3","4","5","6","7","8","9"]
         let kolejGracza = "o"
+        let rozpoczynaGracz = "o"
 
         let wygraneO = 0
         let wygraneX = 0
 
+        let przeciwnik = ""
+        let ruchRobota = 1
         
-        
-
-        function graZCzlowiekiem(){
-
+        //Funkcja odpowiada za zmianę obrazka w divie który pokazuje czyja kolej
+        function odswiezanieObrazkaKolejki(){
+            if(kolejGracza == "o"){
+                kolejGracza = "x"
+            }else{
+                kolejGracza = "o"
+            }
             $("#wyswietlaczKogoTura").text("")
             $("#wyswietlaczKogoTura").append('<img src="'+ kolejGracza +'.png" width="200px" height="200px">')
-
+        }
+        
+        //Funkcja wykrywa który kafelej jest naciśnięty i dodaje do niego odpowiedni obrazek oraz zprawdza czy doszło do końca gry 
+        function runda(){
             for(let i = 0; i < 9; i++){
                 $("#pole" + i).on("click", function(){
-                if(plansza[i] == i + 1){
-                    console.log(plansza[i])
-                    plansza[i] = kolejGracza
-                    $(this).append('<img src="'+ kolejGracza +'.png" width="200px" height="200px">')
-              
-                    czyWygral()
-
-                    if(kolejGracza == "o"){
-                        kolejGracza = "x"
-                    }else{
-                        kolejGracza = "o"
+                    if(plansza[i] == i + 1){
+                        plansza[i] = kolejGracza
+                        $(this).append('<img src="'+ kolejGracza +'.png" width="200px" height="200px">')
+                        
+                        czyWygral()
+                        
+                        if(przeciwnik == "robot"){
+                            ruchRobota =  Math.floor((Math.random() * 6) + 1) 
+                            //Umożliwia to na popełnienie błędu przez progiam i szanse na wygraną przez człowieka
+                            if(ruchRobota == 1){
+                                setTimeout(trybAtakujacy, 700);
+                            }
+                            else{
+                                setTimeout(ZobaczCzyNieWygrasz, 700);
+                            }
+                            
+                        }
                     }
-                    graZCzlowiekiem()
-                }
                 })
             }
-           
         }
 
+        function graZCzlowiekiem(){
+            przeciwnik = "czlowiek"
+            runda()
+        }
+
+        //Bot nie dąży do wygranej jedynie blokuje twoje ruchy
+        function trybDefensywny(){
+            //Pierwsza tura
+            if(plansza[4] == "5"){
+                console.log(plansza[4])
+                plansza[4] = kolejGracza;
+                $("#pole4").append('<img src="'+ kolejGracza +'.png" width="200px" height="200px">')
+                odswiezanieObrazkaKolejki()
+                return;
+            }
+            
+            //Druga tura i następne
+            for(let i = 0; i < 9; i += 3){
+                //Obrona w poziomie
+                if(plansza[i] == "o" && plansza[i + 1] == "o" && plansza[i + 2] == i + 3){
+                    plansza[i + 2] = kolejGracza;
+                    $("#pole" + (i + 2)).append('<img src="'+ kolejGracza +'.png" width="200px" height="200px">')
+                    czyWygral()
+                    return;
+                }
+                if(plansza[i] == "o" && plansza[i + 2] == "o" && plansza[i + 1] == i + 2){
+                    plansza[i + 1] = kolejGracza;
+                    $("#pole" + (i + 1)).append('<img src="'+ kolejGracza +'.png" width="200px" height="200px">')
+                    czyWygral()
+                    return;
+                }
+                if(plansza[i + 1] == "o" && plansza[i + 2] == "o" && plansza[i] == i + 1){
+                    plansza[i] = kolejGracza;
+                    $("#pole" + i).append('<img src="'+ kolejGracza +'.png" width="200px" height="200px">')
+                    czyWygral()
+                    return;
+                }
+            }
+            for(let i = 0; i < 3; i++){
+                //Obrona w pionie
+                if(plansza[i] == "o" && plansza[i + 3] == "o" && plansza[i + 6] == i + 7){
+                    console.log("eas")
+                    plansza[i + 6] = kolejGracza;
+                    $("#pole" + (i + 6)).append('<img src="'+ kolejGracza +'.png" width="200px" height="200px">')
+                    czyWygral()
+                    return;
+                }
+                if(plansza[i] == "o" && plansza[i + 6] == "o" && plansza[i + 3] == i + 4){
+                    plansza[i + 3] = kolejGracza;
+                    $("#pole" + (i + 3)).append('<img src="'+ kolejGracza +'.png" width="200px" height="200px">')
+                    czyWygral()
+                    return;
+                }
+                if(plansza[i + 3] == "o" && plansza[i + 6] == "o" && plansza[i] == i + 1){
+                    plansza[i] = kolejGracza;
+                    $("#pole" + i).append('<img src="'+ kolejGracza +'.png" width="200px" height="200px">')
+                    czyWygral()
+                    return;
+                }
+            }
+            //Obrona na ukos 
+            if(plansza[0] == "o" && plansza[4] == "o" && plansza[8] == 9){
+                plansza[8] = kolejGracza;
+                $("#pole8").append('<img src="'+ kolejGracza +'.png" width="200px" height="200px">')
+                czyWygral()
+                return;
+            }
+            if(plansza[4] == "o" && plansza[8] == "o" && plansza[0] == 1){
+                plansza[0] = kolejGracza;
+                $("#pole0").append('<img src="'+ kolejGracza +'.png" width="200px" height="200px">')
+                czyWygral()
+                return;
+            }
+            if(plansza[2] == "o" && plansza[4] == "o" && plansza[6] == 7){
+                plansza[6] = kolejGracza;
+                $("#pole6").append('<img src="'+ kolejGracza +'.png" width="200px" height="200px">')
+                czyWygral()
+                return;
+            }
+            if(plansza[4] == "o" && plansza[6] == "o" && plansza[2] == 3){
+                plansza[2] = kolejGracza;
+                $("#pole2").append('<img src="'+ kolejGracza +'.png" width="200px" height="200px">')
+                czyWygral()
+                return;
+            }
+            //Gdy nie ma z z czego się bronić przechodzi do ataku
+            trybAtakujacy()        
+        }
+
+        function ZobaczCzyNieWygrasz(){
+            //Szuka podstawowych sposobów na wygraną
+            for(let i = 0; i < 9; i += 3){
+                //Atak w poziomie
+                if(plansza[i] == "x" && plansza[i + 1] == "x" && plansza[i + 2] == i + 3){
+                    plansza[i + 2] = kolejGracza;
+                    $("#pole" + (i + 2)).append('<img src="'+ kolejGracza +'.png" width="200px" height="200px">')
+                    czyWygral()
+                    return;
+                }
+                if(plansza[i] == "x" && plansza[i + 2] == "x" && plansza[i + 1] == i + 2){
+                    plansza[i + 1] = kolejGracza;
+                    $("#pole" + (i + 1)).append('<img src="'+ kolejGracza +'.png" width="200px" height="200px">')
+                    czyWygral()
+                    return;
+                }
+                if(plansza[i + 1] == "x" && plansza[i + 2] == "x" && plansza[i] == i + 1){
+                    plansza[i] = kolejGracza;
+                    $("#pole" + i).append('<img src="'+ kolejGracza +'.png" width="200px" height="200px">')
+                    czyWygral()
+                    return;
+                }
+            }
+            for(let i = 0; i < 3; i++){
+                //atak w pionie
+                if(plansza[i] == "x" && plansza[i + 3] == "x" && plansza[i + 6] == i + 7){
+                    plansza[i + 6] = kolejGracza;
+                    $("#pole" + (i + 6)).append('<img src="'+ kolejGracza +'.png" width="200px" height="200px">')
+                    czyWygral()
+                    return;
+                }
+                if(plansza[i] == "x" && plansza[i + 6] == "x" && plansza[i + 3] == i + 4){
+                    plansza[i + 3] = kolejGracza;
+                    $("#pole" + (i + 3)).append('<img src="'+ kolejGracza +'.png" width="200px" height="200px">')
+                    czyWygral()
+                    return;
+                }
+                if(plansza[i + 3] == "x" && plansza[i + 6] == "x" && plansza[i] == i + 1){
+                    plansza[i] = kolejGracza;
+                    console.log("rak")
+                    $("#pole" + i).append('<img src="'+ kolejGracza +'.png" width="200px" height="200px">')
+                    czyWygral()
+                    return;
+                }
+            }
+            //atak na ukos 
+            if(plansza[0] == "x" && plansza[4] == "x" && plansza[8] == 9){
+                plansza[8] = kolejGracza;
+                $("#pole8").append('<img src="'+ kolejGracza +'.png" width="200px" height="200px">')
+                czyWygral()
+                return;
+            }
+            if(plansza[4] == "x" && plansza[8] == "x" && plansza[0] == 1){
+                plansza[0] = kolejGracza;
+                $("#pole0").append('<img src="'+ kolejGracza +'.png" width="200px" height="200px">')
+                czyWygral()
+                return;
+            }
+            if(plansza[2] == "x" && plansza[4] == "x" && plansza[6] == 7){
+                plansza[6] = kolejGracza;
+                $("#pole6").append('<img src="'+ kolejGracza +'.png" width="200px" height="200px">')
+                czyWygral()
+                return;
+            }
+            if(plansza[4] == "x" && plansza[6] == "x" && plansza[2] == 3){
+                plansza[2] = kolejGracza;
+                $("#pole2").append('<img src="'+ kolejGracza +'.png" width="200px" height="200px">')
+                czyWygral()
+                return;
+            }
+
+            //Jeśli nie da rady wygrać to patrzy na obrone
+            trybDefensywny()
+        }
+
+        //program szuka opcji na atak
+        function trybAtakujacy(){
+            //Próbuje zrobić widełki
+            if(plansza[0] == "x" && plansza[4] == "x" && plansza[8] == "o"){
+                if(plansza[2] == "3"){
+                    plansza[2] = kolejGracza;
+                    $("#pole2").append('<img src="'+ kolejGracza +'.png" width="200px" height="200px">')
+                    czyWygral()
+                    return;
+                }else if(plansza[6] == "7"){
+                    plansza[6] = kolejGracza;
+                    $("#pole6").append('<img src="'+ kolejGracza +'.png" width="200px" height="200px">')
+                    czyWygral()
+                    return;
+                }
+            }
+            else if(plansza[0] == "o" && plansza[4] == "x" && plansza[8] == "x"){
+                if(plansza[2] == "3"){
+                    plansza[2] = kolejGracza;
+                    $("#pole2").append('<img src="'+ kolejGracza +'.png" width="200px" height="200px">')
+                    czyWygral()
+                    return;
+                }else if(plansza[6] == "7"){
+                    plansza[6] = kolejGracza;
+                    $("#pole6").append('<img src="'+ kolejGracza +'.png" width="200px" height="200px">')
+                    czyWygral()
+                    return;
+                }
+            }
+            else if(plansza[2] == "x" && plansza[4] == "x" && plansza[6] == "o"){
+                if(plansza[0] == "1"){
+                    plansza[0] = kolejGracza;
+                    $("#pole0").append('<img src="'+ kolejGracza +'.png" width="200px" height="200px">')
+                    czyWygral()
+                    return;
+                }else if(plansza[8] == "9"){
+                    plansza[8] = kolejGracza;
+                    $("#pole8").append('<img src="'+ kolejGracza +'.png" width="200px" height="200px">')
+                    czyWygral()
+                    return;
+                }
+            }
+            else if(plansza[2] == "o" && plansza[4] == "x" && plansza[6] == "x"){
+                if(plansza[0] == "1"){
+                    plansza[0] = kolejGracza;
+                    $("#pole0").append('<img src="'+ kolejGracza +'.png" width="200px" height="200px">')
+                    czyWygral()
+                    return;
+                }else if(plansza[8] == "9"){
+                    plansza[8] = kolejGracza;
+                    $("#pole8").append('<img src="'+ kolejGracza +'.png" width="200px" height="200px">')
+                    czyWygral()
+                    return;
+                }
+            }
+            
+
+            //zajmuje jeden z rogów jeśli nie ma rzadnego dobrego ataku by zwiększyć szanse na widełki w nastempnym ruchu
+            for(let i = 0; i < 9; i += 2){
+                if(plansza[i] == i + 1 && i != 4){
+                    plansza[i] = kolejGracza;
+                    $("#pole" + i).append('<img src="'+ kolejGracza +'.png" width="200px" height="200px">')
+                    odswiezanieObrazkaKolejki()
+                    return;
+                }
+            }
+            //Jak już nie ma co zrobić to leci po kolei byle by zająć jakieś pole
+            for(let i = 1; i < 9; i += 2){
+                if(plansza[i] == i + 1){
+                    plansza[i] = kolejGracza;
+                    $("#pole" + i).append('<img src="'+ kolejGracza +'.png" width="200px" height="200px">')
+                    odswiezanieObrazkaKolejki()
+                    return;
+                }
+            }
+        }
 
         function graZRobotem(){
-            $("#info").text("Kiedyś zrobie by to działało")
+            przeciwnik = "robot"
+            runda()
+            
         }
-
+        //Funkcja sprawdza czy w danej rundzie wygrałeś jeśli tak to przyznaje ci punkt i odświeza tabele wyników
         function czyWygral(){
             // Wygrana w wierszach
             if(plansza[0] == plansza[1] && plansza[1] == plansza[2]){
@@ -287,6 +554,8 @@
                 }
                 return;
             }
+
+            odswiezanieObrazkaKolejki()
         }
     </script>
 </head>
@@ -323,7 +592,7 @@
                 <div class="ktoIdzieKontener">
                     <h2>TERAZ KOLEJ:</h2>
                     <br>
-                    <p id="wyswietlaczKogoTura"></p>
+                    <p id="wyswietlaczKogoTura"><img src="o.png" width="200px" height="200px"></p>
                 </div>
             </div>
             <div class="col-lg-4">
